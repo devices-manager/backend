@@ -1,0 +1,434 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API REST feita com NodeJS com algumas funcionalidades de banco implementadas",
+        "version": "1.0.0",
+        "title": "Bank API",
+        "contact": {
+            "email": "andreescostta@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "http://https://opensource.org/licenses/MIT"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "paths" : {
+        "/account/{account}" : {
+            "get" : {
+                "summary" : "Buscar informações de uma conta",
+                "description": "Buscar informações da conta de um determinado usuário",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "account",
+                        "description": "número da conta",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "conta encontrada",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account": {
+                                    "$ref": "#/definitions/Account"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros ou conta inválida",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/account/create" : {
+            "post" : {
+                "summary" : "Criação de uma conta",
+                "description": "Criar uma nova conta de usuário no banco",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "informações do usuário",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "cpf" : {
+                                    "type": "string"
+                                },
+                                "isCurrent" : {
+                                    "type": "boolean"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "conta criada com sucesso",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account": {
+                                    "$ref": "#/definitions/Account"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros invalidos",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/account/deposit" : {
+            "post" : {
+                "summary" : "Depósito em conta",
+                "description": "Fazer o depósito de um determinado valor em uma conta",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "informações da conta",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account" : {
+                                    "type": "string"
+                                },
+                                "value" : {
+                                    "type": "number"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "deposito efetuado com suecesso",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros invalidos",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/account/withdraw" : {
+            "post" : {
+                "summary" : "Sacar dinheiro",
+                "description": "Fazer o saque de um determinado valor em uma conta",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "informações da conta",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account" : {
+                                    "type": "string"
+                                },
+                                "value" : {
+                                    "type": "number"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "saque efetuado com suecesso",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros invalidos",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/account/block" : {
+            "post" : {
+                "summary" : "Bloquear conta",
+                "description": "Fazer o bloqueio de uma determinada conta",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "informações da conta",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account" : {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "bloqueio efetuado com suecesso",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros invalidos",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/person" : {
+            "post" : {
+                "summary" : "Cadastrar cliente",
+                "description": "Criar um cliente no banco",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "informações do cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name" : {
+                                    "type": "string"
+                                },
+                                "cpf" : {
+                                    "type": "string"
+                                },
+                                "dateOfBirth" : {
+                                    "type": "string",
+                                    "format": "date"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "cliente cadstrado com suecesso",
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros invalidos",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/transaction/{account}" : {
+            "get" : {
+                "summary" : "Extrato da conta",
+                "description": "Buscar histórico de transações de uma conta",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "account",
+                        "description": "número da conta",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "dateIn",
+                        "description": "data inicial",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "dateOut",
+                        "description": "data final",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "extrato efetuado com suecesso",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Transaction"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parametros invalidos",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "Person": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                     "type": "integer"                     
+                },
+                "name": {
+                    "type": "string"
+                },
+                "cpf": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Account": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "account": {
+                    "type": "string"
+                },
+                "person": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "cpf": {
+                            "type": "string"
+                        },
+                        "dateOfBirth": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "withdrawLimit": {
+                    "type": "number"
+                },
+                "isActivated": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "integer",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Transaction": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                     "type": "integer"                     
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                },
+                "dateTransaction": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "typeTransaction": {
+                    "type": "integer"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}

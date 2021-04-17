@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "no-loops",
+    "prettier"
+  ],
+  "extends": [
+    "standard",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 0,
+    "prettier/prettier": 2 // Means error
+  }
+}

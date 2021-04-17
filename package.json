@@ -1,0 +1,83 @@
+{
+  "name": "devices-manager",
+  "version": "1.0.0",
+  "description": "Simple devices manager system",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src/ --exec \"ts-node src/index.ts\" -e ts",
+    "test": "jest --detectOpenHandles --forceExit && codecov",
+    "build": "tsc",
+    "prod": "npm run build && node ./dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "preset": "@shelf/jest-mongodb",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/costasandre/devices-manager.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Devices Manager",
+    "MySQL"
+  ],
+  "author": "Andre Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/costasandre/devices-manager/issues"
+  },
+  "homepage": "https://github.com/costasandre/devices-manager#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.41",
+    "@types/sequelize": "^4.28.9",
+    "@types/supertest": "^2.0.11",
+    "@types/swagger-jsdoc": "^6.0.0",
+    "@types/swagger-ui-express": "^4.1.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "codecov": "^3.8.1",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "supertest": "^6.1.3",
+    "ts-jest": "^26.5.5",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
+  }
+}
