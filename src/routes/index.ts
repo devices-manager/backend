@@ -1,12 +1,10 @@
 import express from 'express';
-import accountRouter from './account';
-import transactionRouter from './transaction';
-import personRouter from './person';
+import deviceRouter from './device';
+import categoryRouter from './category';
 
 const router = express.Router();
 
-router.use('/account', accountRouter);
-router.use('/person', personRouter);
-router.use('/transaction', transactionRouter);
+router.use('/device', deviceRouter);
+router.use('/category', categoryRouter);
 
 export default router;

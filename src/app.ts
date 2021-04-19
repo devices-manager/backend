@@ -2,10 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import http from 'http';
-import MongoClient from 'mongodb';
-import PersonDAO from './models/person';
-import TransactionDAO from './models/transaction';
-import AccountDAO from './models/account';
 import router from './routes/index';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
@@ -21,7 +17,7 @@ export default class App {
   private static swaggerDocument: any;
 
   /** */
-  public static async init(): Promise<boolean> {
+  public static init(): boolean {
     try {
       this.app = express();
       this.server = http.createServer(this.app);
@@ -36,7 +32,7 @@ export default class App {
   }
 
   /** */
-  public static async startDependencies(): Promise<boolean> {
+  public static startDependencies(): boolean {
     try {
       this.app.use(cors());
       this.app.options('*', cors());
@@ -57,26 +53,7 @@ export default class App {
   }
 
   /** */
-  public static async initDatabase(url: string): Promise<boolean> {
-    try {
-      await MongoClient.connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      }).then(async function (conn: any) {
-        const database: any = await conn.db('bank');
-        await PersonDAO.injectDb(database);
-        await TransactionDAO.injectDb(database);
-        await AccountDAO.injectDb(database);
-      });
-      return true;
-    } catch (error: unknown) {
-      console.error(`Unable to start database: ${error}`);
-      return false;
-    }
-  }
-
-  /** */
-  public static async startServer(port: number): Promise<boolean> {
+  public static startServer(port: number): boolean {
     try {
       this.server.listen(port);
       console.log('Server listen on port: [3000]');

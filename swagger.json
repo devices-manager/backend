@@ -1,9 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API REST feita com NodeJS com algumas funcionalidades de banco implementadas",
+        "description": "API REST for manage devices",
         "version": "1.0.0",
-        "title": "Bank API",
+        "title": "Devices Manager",
         "contact": {
             "email": "andreescostta@gmail.com"
         },
