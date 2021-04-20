@@ -7,8 +7,8 @@ jobs:
         docker:
             - image: circleci/node:erbium
         steps:
-            - codecov/upload:
-                file: coverage/coverage-final.json
+            # - codecov/upload:
+            #     file: coverage/coverage-final.json
             # Checkout the code from the branch into the working_directory
             - checkout
             # Log the current branch
