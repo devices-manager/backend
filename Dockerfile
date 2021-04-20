@@ -28,16 +28,18 @@ RUN npm run build
 FROM node AS final
 
 # Prepare a destination directory for js files              
-ARG DATABASE=localhost
-ARG USER=root
-ARG PASS=cuen
+ARG DATABASE=database
+ARG DBUSER=root
+ARG DBPASS=cuen
+ARG DBHOST=localhost
 
 # Use /app as CWD
 WORKDIR /app
 
 ENV DATABASE=${DATABASE}
-ENV USER=${USER}
-ENV PASS=${PASS}
+ENV DBUSER=${DBUSER}
+ENV DBPASS=${DBPASS}
+ENV DBHOST=${DBHOST}}
 
 # Copy package.json and package-lock.json
 COPY package*.json ./                   
