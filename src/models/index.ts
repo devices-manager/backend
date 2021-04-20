@@ -1,16 +1,12 @@
 import { Sequelize } from 'sequelize';
-import path from 'path';
-
-const config = require(path.resolve('./config/config.json'));
-const dbConfig = config.development;
 
 const sequelize = new Sequelize(
-  dbConfig.database,
-  dbConfig.username,
-  dbConfig.password,
+  process.env.DATABASE || 'database',
+  process.env.DBUSER || 'root',
+  process.env.DBPASS || '',
   {
-    host: dbConfig.host,
-    dialect: dbConfig.dialect
+    host: process.env.DBHOST,
+    dialect: 'mysql'
   }
 );
 

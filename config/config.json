@@ -3,7 +3,7 @@
     "username": "root",
     "password": "123Pipoca#",
     "database": "database_development",
-    "host": "192.168.100.13",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

@@ -27,11 +27,17 @@ RUN npm run build
 
 FROM node AS final
 
-# Prepare a destination directory for js files
-# RUN mkdir -p /app/dist                  
+# Prepare a destination directory for js files              
+ARG DATABASE=localhost
+ARG USER=root
+ARG PASS=cuen
 
 # Use /app as CWD
-WORKDIR /app                            
+WORKDIR /app
+
+ENV DATABASE=${DATABASE}
+ENV USER=${USER}
+ENV PASS=${PASS}
 
 # Copy package.json and package-lock.json
 COPY package*.json ./                   
@@ -42,7 +48,7 @@ RUN npm i --only=production
 # Copy transpiled js from builder stage into the final image
 COPY --from=builder ./app/config ./config
 COPY --from=builder ./app/dist ./dist
-COPY --from=builder ./app/dist ./swagger.json
+COPY --from=builder ./app/swagger.json ./swagger.json
 
 # Open desired port
 EXPOSE 3000
