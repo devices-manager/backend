@@ -40,7 +40,8 @@ COPY package*.json ./
 RUN npm i --only=production             
 
 # Copy transpiled js from builder stage into the final image
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/dist ./config
+COPY --from=builder /app/dist ./dist 
 
 # Open desired port
 EXPOSE 3000
