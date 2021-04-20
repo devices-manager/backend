@@ -28,7 +28,7 @@ RUN npm run build
 FROM node AS final
 
 # Prepare a destination directory for js files
-RUN mkdir -p /app/dist                  
+# RUN mkdir -p /app/dist                  
 
 # Use /app as CWD
 WORKDIR /app                            
@@ -40,8 +40,9 @@ COPY package*.json ./
 RUN npm i --only=production             
 
 # Copy transpiled js from builder stage into the final image
-COPY --from=builder /app ./config
-COPY --from=builder /app/dist ./dist 
+COPY --from=builder ./app/config ./config
+COPY --from=builder ./app/dist ./dist
+COPY --from=builder ./app/dist ./swagger.json
 
 # Open desired port
 EXPOSE 3000

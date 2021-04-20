@@ -5,6 +5,7 @@ import http from 'http';
 import router from './routes/index';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
+import path from 'path';
 
 /** Class to configure and init application */
 export default class App {
@@ -21,7 +22,7 @@ export default class App {
     try {
       this.app = express();
       this.server = http.createServer(this.app);
-      this.swaggerFile = process.cwd() + '/swagger.json';
+      this.swaggerFile = path.resolve('./swagger.json');
       this.swaggerData = fs.readFileSync(this.swaggerFile, 'utf8');
       this.swaggerDocument = JSON.parse(this.swaggerData);
       return true;
