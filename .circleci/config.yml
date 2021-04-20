@@ -6,6 +6,7 @@ jobs:
         environment:
             IMAGE_NAME: backend
             DOCKER_LOGIN: csandre
+            TAG: latest
         working_directory: ~/repo
         docker:
             - image: circleci/node:erbium
