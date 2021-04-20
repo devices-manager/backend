@@ -56,7 +56,7 @@ export default class App {
   public static startServer(port: number): boolean {
     try {
       this.server.listen(port);
-      console.log('Server listen on port: [3000]');
+      console.log(`Server listen on port: [${port}]`);
       return true;
     } catch (error) {
       console.error(`Unable to listen server: ${error}`);
