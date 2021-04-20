@@ -4,7 +4,7 @@ version: 2.1
 jobs:
     build:
         environment:
-            IMAGE_NAME: csandre/backend
+            IMAGE_NAME: backend
         working_directory: ~/repo
         docker:
             - image: circleci/node:erbium
