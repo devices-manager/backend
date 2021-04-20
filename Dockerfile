@@ -39,7 +39,7 @@ WORKDIR /app
 ENV DATABASE=${DATABASE}
 ENV DBUSER=${DBUSER}
 ENV DBPASS=${DBPASS}
-ENV DBHOST=${DBHOST}}
+ENV DBHOST=${DBHOST}
 
 # Copy package.json and package-lock.json
 COPY package*.json ./                   
