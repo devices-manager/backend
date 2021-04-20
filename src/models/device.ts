@@ -40,7 +40,15 @@ Device.init(
     },
     partNumber: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      unique: true,
+      validate: {
+        inPositive(value: number) {
+          if (value < 0) {
+            throw new Error("The value must be a positive interger");
+          }
+        }
+      }
     }
   },
   {
