@@ -41,7 +41,7 @@ jobs:
                 command: npm run test
             - store_artifacts:
                 path: coverage
-            - setup_remote_docker:
+            - setup_remote_docker
             - run:
                 name: Build and push Docker image
                 command: |
