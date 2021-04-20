@@ -45,7 +45,7 @@ Device.init(
       validate: {
         inPositive(value: number) {
           if (value < 0) {
-            throw new Error("The value must be a positive interger");
+            throw new Error('The value must be a positive interger');
           }
         }
       }
