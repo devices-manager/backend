@@ -21,6 +21,6 @@ export function listOne(req: Request, res: Response) {
 
 export function remove(req: Request, res: Response) {
   return DeviceDAO.remove(req.body.data)
-    .then((_) => res.status(200).json({result: true}))
+    .then((_) => res.status(200).json({ result: true }))
     .catch((error) => res.status(500).json({ error: error }));
 }
