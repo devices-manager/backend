@@ -53,7 +53,7 @@ Device.init(
   },
   {
     sequelize,
-    modelName: 'Device'
+    modelName: 'Devices'
   }
 );
 
