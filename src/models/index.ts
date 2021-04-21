@@ -1,8 +1,5 @@
 import { Sequelize } from 'sequelize';
 
-console.log(process.env.DBHOST);
-console.log(process.env.DATABASE);
-
 const sequelize = new Sequelize(
   process.env.DATABASE || 'database',
   process.env.DBUSER || 'root',
@@ -19,7 +16,5 @@ const sequelize = new Sequelize(
     }
   }
 );
-
-sequelize.sync({ alter: true });
 
 export default sequelize;

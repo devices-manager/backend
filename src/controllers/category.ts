@@ -21,6 +21,6 @@ export function listOne(req: Request, res: Response) {
 
 export function remove(req: Request, res: Response) {
   return CategoryDAO.remove(req.body.data)
-    .then((category) => res.status(201).send(category))
+    .then((category) => res.sendStatus(201).send(category))
     .catch((error) => res.status(500).json({ error: error }));
 }
