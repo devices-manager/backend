@@ -14,7 +14,7 @@ export function list(_: Request, res: Response) {
 }
 
 export function listOne(req: Request, res: Response) {
-  return CategoryDAO.findById(req.body.data)
+  return CategoryDAO.findById(Number(req.params.id))
     .then((category) => res.status(201).send(category))
     .catch((error) => res.status(500).json({ error: error }));
 }

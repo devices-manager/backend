@@ -6,10 +6,10 @@ export function create(category: CategoryAttributes): Promise<any> {
   });
 }
 
-export function findById(category: CategoryAttributes): Promise<any> {
+export function findById(categoryId: number): Promise<any> {
   return Category.findOne({
     where: {
-      id: category.id
+      id: categoryId
     }
   });
 }
