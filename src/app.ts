@@ -36,7 +36,6 @@ export default class App {
   public static startDependencies(): boolean {
     try {
       this.app.use(cors());
-      this.app.options('*', cors());
       this.app.use(bodyParser.json());
       this.app.use(bodyParser.urlencoded({ extended: true }));
       this.app.use('/api/v1', router);
